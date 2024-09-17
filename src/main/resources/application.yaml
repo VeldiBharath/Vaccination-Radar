@@ -1,0 +1,44 @@
+server:
+  port: 8087
+
+cowin:
+  apiUrl: "http://localhost:8080"
+
+topic:
+  user.requests: "user-requests"
+  user.districts: "user-districts"
+  user.bypincode: "users-by-pincode"
+  updated.pincodes: "updated-pincodes"
+
+telegram:
+  enabled: true
+  bot.username: covid19_vaccine_tracker_bot
+  db.path: "/tmp/telegram.db"
+
+jobs:
+  cron:
+    priority.districts.availability: "0 * 6-23 * * *"
+    vaccine.availability: "0 0/15 6-23 * * *"
+    district.notifications: "-"
+    absentalerts.notifications: "-"
+    pincode.reconciliation: "0 1 6,9,12,15,18,21 * * *"
+    cowin.api.auth: "-"
+    db.cleanup: "-"
+    notification.stats: "0 4/5 6-23 * * *"
+    user.stats: "0 3/5 6-23 * * *"
+
+logging:
+  level:
+    org.apache.kafka.streams: INFO
+
+availability:
+  priorityDistricts: ""
+
+spring:
+  kafka:
+    streams:
+      application-id: "org.covid19.vaccine-tracker"
+      client-id: "org.covid19.vaccine-tracker"
+    properties:
+      "application.id": "org.covid19.vaccine-tracker"
+      "client.id": "org.covid19.vaccine-tracker"

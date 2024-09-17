@@ -1,0 +1,29 @@
+telegram:
+  enabled: false
+  bot.username: covid19_vaccine_tracker_bot
+  db.path: "/tmp/telegram.db"
+  creator.id: "12345"
+  chat.id: "12345"
+
+topic:
+  user.requests: "user-requests"
+  user.districts: "user-districts"
+  user.bypincode: "users-by-pincode"
+  updated.pincodes: "updated-pincodes"
+
+spring:
+  flyway:
+    enabled: false
+  datasource:
+    platform: h2
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+
+logging:
+  level:
+    org.covid19.vaccinetracker: DEBUG
